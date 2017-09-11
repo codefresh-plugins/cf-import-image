@@ -1,0 +1,17 @@
+version: '1.0'
+
+steps:
+
+  main_build:
+    type: build
+    title: "Building import-image container ..."
+    description: build import-image container
+    image_name: alexeiled/import-image
+
+  push_image:
+    type: push
+    title: "Pushing import-image:latest ..."
+    description: Push import-image image to the DockerHub
+    candidate: ${{main_build}}
+    tag: latest
+    image_name: alexeiled/import-image
