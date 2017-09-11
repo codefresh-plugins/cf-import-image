@@ -5,4 +5,4 @@ steps:
   import_images:
     title: Importing images ...
     description: import Docker images form external registry
-    image: alexeiled/import-images
+    image: codefresh/import-images
