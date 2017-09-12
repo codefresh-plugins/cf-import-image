@@ -22,9 +22,13 @@ fi
 registry=${REGISTRY:-docker.io}
 
 for image in "${images[@]}"; do
+  # fully qualified image name; add docker.io to DockerHub images
+  if [ "$registry" == "docker.io" ]; then
+    image="${registry}/${image}"
+  fi
   # get image details from registry
-  skopeo inspect ${creds_flag} docker://"$registry/$image" | \
-    jq --arg name "$registry/$image" '.=.+{Image: $name}' | jq . > metadata.json
+  skopeo inspect ${creds_flag} docker://$image | \
+    jq --arg name "$image" '.=.+{Image: $name}' | jq . > metadata.json
   echo "Successfuly fetched metadata for $image image"
   # import external image to CF
   curl \
