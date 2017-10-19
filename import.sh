@@ -26,9 +26,11 @@ for image in "${images[@]}"; do
   if [ "$registry" == "docker.io" ]; then
     image="${registry}/${image}"
   fi
+  # get image ID from raw manifest
+  image_id=$(skopeo inspect --raw docker://$image | jq .config.digest)
   # get image details from registry
-  skopeo inspect ${creds_flag} docker://$image | \
-    jq --arg name "$image" '.=.+{Image: $name}' | jq . > metadata.json
+  skopeo inspect docker://$image | \
+    jq --arg id "$image_id" --arg name "$image" '.=.+{Image: $name, Id: $id}' | jq . > metadata.json
   echo "Successfuly fetched metadata for $image image"
   # import external image to CF
   curl \
