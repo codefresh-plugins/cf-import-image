@@ -6,7 +6,7 @@ steps:
     type: build
     title: "Building import-image container ..."
     description: build import-image container
-    image_name: codefresh/import-images
+    image_name: codefreshplugins/import-images
 
   push_image:
     type: push
@@ -14,4 +14,4 @@ steps:
     description: Push import-image image to the DockerHub
     candidate: ${{main_build}}
     tag: latest
-    image_name: codefresh/import-images
+    image_name: codefreshplugins/import-images
