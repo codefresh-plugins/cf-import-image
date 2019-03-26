@@ -5,7 +5,7 @@ categories:
   - Featured
 sources:
   - https://github.com/codefresh-contrib/cf-import-image
-icon: 'https://raw.githubusercontent.com/codefresh-io/plugins/new-pipeline/plugins/vault/logo.jpg'
+icon: https://github.com/codefresh-plugins/cf-import-image/blob/master/icon.jpg
 maintainers:
   - name: Alexei Ledenev
 envs:
