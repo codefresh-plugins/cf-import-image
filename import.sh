@@ -35,7 +35,7 @@ for image in "${images[@]}"; do
   # import external image to CF
   curl \
     -H "Content-Type: application/json" \
-    -H "x-access-token: $CF_API_TOKEN" \
+    -H "Authorization: $CF_API_TOKEN" \
     -POST \
     -d @metadata.json \
     "$CF_URL/api/images/external"
